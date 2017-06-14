@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WireFire</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/main.css">
+
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+
+
+  <script>
+  $(document).ready(function() {
+    $("#datepicker").datepicker();
+    $("#datepicker1").datepicker();
+  });
+  </script>
+</head>
+<body>
+<style>
+    body {
+        background-color:lightgoldenrodyellow;
+        font-family: georgia, times, serif;
+        font-size: 1.4rem;
+        border-top: 1rem solid #3498db;
+    }
+
+
+
+    .mainselection {
+
+      margin: 0 auto;
+      width: 200px;
+      padding: 20px;
+      color: black;
+
+    }
+
+
+    select {
+    border:0;
+    background-color:transparent;
+    height:52px;
+    width:350px;
+    -webkit-appearance: none;
+    text-align: center;
+    display: inline-block;
+    border-top: 0px;
+    border-bottom: 1px solid #d8d8d8;
+    font-size: 30px;
+
+    }
+
+    input[type=text]:focus {
+    border-color:transparent;
+}
+
+    input[type=submit] {
+        padding:10px 25px;
+        background:greenyellow;
+        border:0 grey;
+        cursor:pointer;
+        -webkit-border-radius: 5px;
+        border-radius: 5px;
+    }
+
+    input[id=datepicker]:focus {
+    background: #333;
+    border: 1px solid #555;
+    color: #EEE;
+}
+
+
+
+</style>
+
+<img src="/static/WireFire.jpg" height="200">
+<br>
+<br>
+
+<div class="mainselection">
+
+
+
+<form action="search" method="get">
+    <b>Departure City</b>
+    <select name="departure">
+        <option value="DPS">Bali</option>
+        <option value="BKK" selected="selected">Bangkok</option>
+        <option value="HKG">Hong Kong</option>
+        <option value="KUL">Kuala Lumpur</option>
+        <option value="SIN">Singapore</option>
+    </select>
+    <br>
+    <b>Arrival City</b>
+    <select name="arrival">
+        <option value="DPS">Bali</option>
+        <option value="BKK">Bangkok</option>
+        <option value="HKG" selected="selected">Hong Kong</option>
+        <option value="KUL">Kuala Lumpur</option>
+        <option value="SIN">Singapore</option>
+    </select>
+    <br>
+    <b>Departure date</b>  <input id="datepicker" name="dep_date" required><br>
+    <b>Return date</b>  <input id="datepicker1" name="ret_date" required><br>
+    <br>
+    <input type="submit" value="Submit">
+</form>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,1 @@
+web: gunicorn flight_aggregator.wsgi --log-file -

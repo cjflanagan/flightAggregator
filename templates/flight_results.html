@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Flight Results</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" type="text/css" href="/static/css/main.css">
+    <style>
+       #map {
+            height: 100%;
+    }
+
+    </style>
+
+
+  </head>
+</head>
+<body>
+
+
+<div id="header">
+
+
+<img src="static/WireFire.jpg" height="200"><br>
+<h2>Search Results</h2><br>
+
+
+
+</div>
+
+
+
+
+
+
+
+<div id="main-wrap">
+    <div id="sidebar">
+
+
+
+
+
+        <h4>Traveling from {{ departure_city_name }} to {{ arrival_city_name }} on {{ departure_date }}:</h4>
+        {% if my_price == 99999 %}
+            No available fares on Air Asia for your selected route <br>
+        {% endif %}
+        {% if my_price != 99999 %}
+            Lowest fare on <img src="static/AirAsia.png" height="13">: {{ my_price }} USD, leaving at {{ departure_time }} and arriving at {{ arrival_time }}
+        {% if cheap_price1 == 1 %}
+            <img src="static/Cheapest.png" height="15">&nbsp;&nbsp;<a href="http://www.airasia.com" target="_blank">Book now!</a>
+        {% endif %}
+            <br>
+        {%  endif %}
+        {% if my_jetstar_price == 99999 %}
+            No available fares on Jetstar for your selected route <br><br>
+        {% endif %}
+        {% if my_jetstar_price != 99999 %}
+        Lowest fare on <img src="static/Jetstar.png" height="13">: {{ my_jetstar_price }} USD
+            {% if cheap_price1 == 2 %}
+            <img src="static/Cheapest.png" height="15">&nbsp;&nbsp;<a href="http://www.jetstar.com" target="_blank">Book now!</a>
+        {% endif %}<br><br>
+        {% endif %}
+
+        <h4>Returning from {{ arrival_city_name }} to {{ departure_city_name }} on {{ return_date }}:</h4>
+        {% if my_jetstar_price_return == 99999 %}
+            No available fares on Air Asia for your selected route <br>
+        {% endif %}
+        {% if my_jetstar_price_return != 99999 %}
+        Lowest fare on <img src="static/AirAsia.png" height="13">: {{ my_price_return }} USD, leaving at {{ departure_time_return }} and arriving at {{ arrival_time_return }}
+            {% if cheap_price2 == 1 %}
+            <img src="static/Cheapest.png" height="15">&nbsp;&nbsp;<a href="http://www.airasia.com" target="_blank">Book now!</a>
+        {% endif %}
+            <br>
+        {%  endif %}
+        {% if my_jetstar_price_return == 99999 %}
+            No available fares on Jetstar for your selected route <br><br>
+        {% endif %}
+        {% if my_jetstar_price_return != 99999 %}
+            Lowest fare on <img src="static/Jetstar.png" height="13">: {{ my_jetstar_price_return }} USD
+            {% if cheap_price2 == 2 %}
+            <img src="static/Cheapest.png" height="15">&nbsp;&nbsp;<a href="http://www.jetstar.com" target="_blank">Book now!</a>
+        {% endif %}<br><br>
+        {% endif %}
+
+</div>
+
+
+
+
+    <div id="map">
+
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<div id="footer">&copy 2016</div>
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+
+      // This example creates a 2-pixel-wide red polyline showing the path of William
+      // Kingsford Smith's first trans-Pacific flight between Oakland, CA, and
+      // Brisbane, Australia.
+
+      var data = {{coord|safe}};
+
+
+      var origin_lat = data['coordinates']['origin_lat']
+      var origin_lng = data['coordinates']['origin_lng']
+      var dest_lat = data['coordinates']['dest_lat']
+      var dest_lng = data['coordinates']['dest_lng']
+      console.log(dest_lng);
+
+      function initMap() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 2,
+          center: {lat: origin_lat, lng: origin_lng},
+          mapTypeId: google.maps.MapTypeId.TERRAIN
+        });
+
+        var flightPlanCoordinates = [
+          {lat: origin_lat, lng: origin_lng},
+          {lat: dest_lat, lng: dest_lng},
+        ];
+
+
+        var flightPath = new google.maps.Polyline({
+          path: flightPlanCoordinates,
+          geodesic: true,
+          strokeColor: '#FF0000',
+          strokeOpacity: 1.0,
+          strokeWeight: 2
+        });
+
+        flightPath.setMap(map);
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDoGc0EfKwJnqFwaQjCP4il9fd3uB6cmrA&callback=initMap">
+
+    </script>
+
+</body>
+</html>
+
